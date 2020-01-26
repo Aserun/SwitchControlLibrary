@@ -54,11 +54,11 @@ typedef struct
 
 class SwitchControlLibrary_
 {
-  private:
+private:
 	USB_JoystickReport_Input_t _joystickInputData;
 	void SendReport();
 
-  public:
+public:
 	SwitchControlLibrary_();
 
 	void PressButtonY();
