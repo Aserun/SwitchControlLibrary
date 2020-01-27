@@ -52,11 +52,11 @@ SwitchControlLibrary_::SwitchControlLibrary_()
     CustomHID().AppendDescriptor(&node);
 
     memset(&_joystickInputData, 0, sizeof(USB_JoystickReport_Input_t));
-    _joystickInputData.LX = (uint8_t)Stick::CENTER;
-    _joystickInputData.LY = (uint16_t)Stick::CENTER;
-    _joystickInputData.RX = (uint16_t)Stick::CENTER;
-    _joystickInputData.RY = (uint16_t)Stick::CENTER;
-    _joystickInputData.Hat = (uint16_t)Hat::CENTER;
+    _joystickInputData.LX = Stick::CENTER;
+    _joystickInputData.LY = Stick::CENTER;
+    _joystickInputData.RX = Stick::CENTER;
+    _joystickInputData.RY = Stick::CENTER;
+    _joystickInputData.Hat = Hat::CENTER;
 }
 
 void SwitchControlLibrary_::SendReport()
@@ -64,172 +64,156 @@ void SwitchControlLibrary_::SendReport()
     CustomHID().SendReport(&_joystickInputData, sizeof(USB_JoystickReport_Input_t));
 }
 
+void SwitchControlLibrary_::PressButton(uint16_t button)
+{
+    _joystickInputData.Button |= button;
+    SendReport();
+}
+
+void SwitchControlLibrary_::ReleaseButton(uint16_t button)
+{
+    _joystickInputData.Button &= (button ^ 0xffff);
+    SendReport();
+}
+
 void SwitchControlLibrary_::PressButtonY()
 {
-    _joystickInputData.Button |= (uint16_t)Button::Y;
-    SendReport();
+    PressButton(Button::Y);
 }
 
 void SwitchControlLibrary_::ReleaseButtonY()
 {
-    _joystickInputData.Button &= ((uint16_t)Button::Y ^ 0xffff);
-    SendReport();
+    ReleaseButton(Button::Y);
 }
 
 void SwitchControlLibrary_::PressButtonB()
 {
-    _joystickInputData.Button |= (uint16_t)Button::B;
-    SendReport();
+    PressButton(Button::B);
 }
 
 void SwitchControlLibrary_::ReleaseButtonB()
 {
-    _joystickInputData.Button &= ((uint16_t)Button::B ^ 0xffff);
-    SendReport();
+    ReleaseButton(Button::B);
 }
 
 void SwitchControlLibrary_::PressButtonA()
 {
-    _joystickInputData.Button |= (uint16_t)Button::A;
-    SendReport();
+    PressButton(Button::A);
 }
 
 void SwitchControlLibrary_::ReleaseButtonA()
 {
-    _joystickInputData.Button &= ((uint16_t)Button::A ^ 0xffff);
-    SendReport();
+    ReleaseButton(Button::A);
 }
 
 void SwitchControlLibrary_::PressButtonX()
 {
-    _joystickInputData.Button |= (uint16_t)Button::X;
-    SendReport();
+    PressButton(Button::X);
 }
 
 void SwitchControlLibrary_::ReleaseButtonX()
 {
-    _joystickInputData.Button &= ((uint16_t)Button::X ^ 0xffff);
-    SendReport();
+    ReleaseButton(Button::X);
 }
 
 void SwitchControlLibrary_::PressButtonL()
 {
-    _joystickInputData.Button |= (uint16_t)Button::L;
-    SendReport();
+    PressButton(Button::L);
 }
 
 void SwitchControlLibrary_::ReleaseButtonL()
 {
-    _joystickInputData.Button &= ((uint16_t)Button::L ^ 0xffff);
-    SendReport();
+    ReleaseButton(Button::L);
 }
 
 void SwitchControlLibrary_::PressButtonR()
 {
-    _joystickInputData.Button |= (uint16_t)Button::R;
-    SendReport();
+    PressButton(Button::R);
 }
 
 void SwitchControlLibrary_::ReleaseButtonR()
 {
-    _joystickInputData.Button &= ((uint16_t)Button::R ^ 0xffff);
-    SendReport();
+    ReleaseButton(Button::R);
 }
 
 void SwitchControlLibrary_::PressButtonZL()
 {
-    _joystickInputData.Button |= (uint16_t)Button::ZL;
-    SendReport();
+    PressButton(Button::ZL);
 }
 
 void SwitchControlLibrary_::ReleaseButtonZL()
 {
-    _joystickInputData.Button &= ((uint16_t)Button::ZL ^ 0xffff);
-    SendReport();
+    ReleaseButton(Button::ZL);
 }
 
 void SwitchControlLibrary_::PressButtonZR()
 {
-    _joystickInputData.Button |= (uint16_t)Button::ZR;
-    SendReport();
+    PressButton(Button::ZR);
 }
 
 void SwitchControlLibrary_::ReleaseButtonZR()
 {
-    _joystickInputData.Button &= ((uint16_t)Button::ZR ^ 0xffff);
-    SendReport();
+    ReleaseButton(Button::ZR);
 }
 
 void SwitchControlLibrary_::PressButtonMinus()
 {
-    _joystickInputData.Button |= (uint16_t)Button::MINUS;
-    SendReport();
+    PressButton(Button::MINUS);
 }
 
 void SwitchControlLibrary_::ReleaseButtonMinus()
 {
-    _joystickInputData.Button &= ((uint16_t)Button::MINUS ^ 0xffff);
-    SendReport();
+    ReleaseButton(Button::MINUS);
 }
 
 void SwitchControlLibrary_::PressButtonPlus()
 {
-    _joystickInputData.Button |= (uint16_t)Button::PLUS;
-    SendReport();
+    PressButton(Button::PLUS);
 }
 
 void SwitchControlLibrary_::ReleaseButtonPlus()
 {
-    _joystickInputData.Button &= ((uint16_t)Button::PLUS ^ 0xffff);
-    SendReport();
+    ReleaseButton(Button::PLUS);
 }
 
 void SwitchControlLibrary_::PressButtonLClick()
 {
-    _joystickInputData.Button |= (uint16_t)Button::LCLICK;
-    SendReport();
+    PressButton(Button::LCLICK);
 }
 
 void SwitchControlLibrary_::ReleaseButtonLClick()
 {
-    _joystickInputData.Button &= ((uint16_t)Button::LCLICK ^ 0xffff);
-    SendReport();
+    ReleaseButton(Button::LCLICK);
 }
 
 void SwitchControlLibrary_::PressButtonRClick()
 {
-    _joystickInputData.Button |= (uint16_t)Button::RCLICK;
-    SendReport();
+    PressButton(Button::RCLICK);
 }
 
 void SwitchControlLibrary_::ReleaseButtonRClick()
 {
-    _joystickInputData.Button &= ((uint16_t)Button::RCLICK ^ 0xffff);
-    SendReport();
+    ReleaseButton(Button::RCLICK);
 }
 
 void SwitchControlLibrary_::PressButtonHome()
 {
-    _joystickInputData.Button |= (uint16_t)Button::HOME;
-    SendReport();
+    PressButton(Button::HOME);
 }
 
 void SwitchControlLibrary_::ReleaseButtonHome()
 {
-    _joystickInputData.Button &= ((uint16_t)Button::HOME ^ 0xffff);
-    SendReport();
+    ReleaseButton(Button::HOME);
 }
 
 void SwitchControlLibrary_::PressButtonCapture()
 {
-    _joystickInputData.Button |= (uint16_t)Button::CAPTURE;
-    SendReport();
+    PressButton(Button::CAPTURE);
 }
 
 void SwitchControlLibrary_::ReleaseButtonCapture()
 {
-    _joystickInputData.Button &= ((uint16_t)Button::CAPTURE ^ 0xffff);
-    SendReport();
+    ReleaseButton(Button::CAPTURE);
 }
 
 void SwitchControlLibrary_::MoveHat(uint8_t hat)

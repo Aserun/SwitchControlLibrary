@@ -3,42 +3,42 @@
 
 #include "CustomHID.h"
 
-enum class Button : uint16_t
+struct Button
 {
-    Y = 0x0001,
-    B = 0x0002,
-    A = 0x0004,
-    X = 0x0008,
-    L = 0x0010,
-    R = 0x0020,
-    ZL = 0x0040,
-    ZR = 0x0080,
-    MINUS = 0x0100,
-    PLUS = 0x0200,
-    LCLICK = 0x0400,
-    RCLICK = 0x0800,
-    HOME = 0x1000,
-    CAPTURE = 0x2000
+    static const uint16_t Y = 0x0001;
+    static const uint16_t B = 0x0002;
+    static const uint16_t A = 0x0004;
+    static const uint16_t X = 0x0008;
+    static const uint16_t L = 0x0010;
+    static const uint16_t R = 0x0020;
+    static const uint16_t ZL = 0x0040;
+    static const uint16_t ZR = 0x0080;
+    static const uint16_t MINUS = 0x0100;
+    static const uint16_t PLUS = 0x0200;
+    static const uint16_t LCLICK = 0x0400;
+    static const uint16_t RCLICK = 0x0800;
+    static const uint16_t HOME = 0x1000;
+    static const uint16_t CAPTURE = 0x2000;
 };
 
-enum class Hat : uint8_t
+struct Hat
 {
-    TOP = 0x00,
-    TOP_RIGHT = 0x01,
-    RIGHT = 0x02,
-    BOTTOM_RIGHT = 0x03,
-    BOTTOM = 0x04,
-    BOTTOM_LEFT = 0x05,
-    LEFT = 0x06,
-    TOP_LEFT = 0x07,
-    CENTER = 0x08
+    static const uint8_t TOP = 0x00;
+    static const uint8_t TOP_RIGHT = 0x01;
+    static const uint8_t RIGHT = 0x02;
+    static const uint8_t BOTTOM_RIGHT = 0x03;
+    static const uint8_t BOTTOM = 0x04;
+    static const uint8_t BOTTOM_LEFT = 0x05;
+    static const uint8_t LEFT = 0x06;
+    static const uint8_t TOP_LEFT = 0x07;
+    static const uint8_t CENTER = 0x08;
 };
 
-enum class Stick : uint8_t
+struct Stick
 {
-    MIN = 0,
-    CENTER = 128,
-    MAX = 255
+    static const uint8_t MIN = 0;
+    static const uint8_t CENTER = 128;
+    static const uint8_t MAX = 255;
 };
 
 typedef struct
@@ -61,6 +61,8 @@ private:
 public:
     SwitchControlLibrary_();
 
+    void PressButton(uint16_t button);
+    void ReleaseButton(uint16_t button);
     void PressButtonY();
     void ReleaseButtonY();
     void PressButtonB();
